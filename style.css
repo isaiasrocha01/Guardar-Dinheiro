@@ -156,6 +156,10 @@ button:hover {
     flex: 1;
 }
 
+#btnAdicionar{
+    margin: 10px 0;
+}
+
 /* -------------------------------------------
    RESPONSIVIDADE (CELULAR)
    ------------------------------------------- */
