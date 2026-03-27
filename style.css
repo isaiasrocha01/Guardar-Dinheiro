@@ -18,7 +18,8 @@ body {
 /* Container Principal */
 .container {
     width: 100%;
-    max-width: 1000px; /* Largura ideal para Desktop */
+    max-width: 1000px;
+    /* Largura ideal para Desktop */
     background: rgba(0, 0, 0, 0.8);
     padding: 25px;
     border-radius: 15px;
@@ -29,12 +30,13 @@ body {
 }
 
 
-.logo{
+.logo {
     display: flex;
     align-items: center;
     gap: 15px;
     margin: auto;
 }
+
 .logo img {
     width: 40px;
     height: 40px;
@@ -50,7 +52,8 @@ h1 {
 /* --- GRID LAYOUT (A mágica acontece aqui) --- */
 .conteudo-principal {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* Duas colunas iguais */
+    grid-template-columns: 1fr 1fr;
+    /* Duas colunas iguais */
     gap: 30px;
 }
 
@@ -72,7 +75,8 @@ h1 {
 }
 
 /* --- ESTILIZAÇÃO DE ELEMENTOS --- */
-input, select {
+input,
+select {
     padding: 12px;
     border-radius: 8px;
     border: none;
@@ -105,12 +109,14 @@ button:hover {
 }
 
 /* Listas com scroll para não esticar o layout */
-#lista, #listaGastos {
+#lista,
+#listaGastos {
     max-height: 200px;
     overflow-y: auto;
 }
 
-.mes, .gasto {
+.mes,
+.gasto {
     background: rgba(255, 255, 255, 0.1);
     padding: 10px;
     margin-bottom: 8px;
@@ -121,7 +127,11 @@ button:hover {
     font-size: 14px;
 }
 
-.pago { text-decoration: line-through; color: #7fffd4; opacity: 0.6; }
+.pago {
+    text-decoration: line-through;
+    color: #7fffd4;
+    opacity: 0.6;
+}
 
 .barra {
     height: 15px;
@@ -142,17 +152,35 @@ button:hover {
     flex-wrap: wrap;
 }
 
-.botoes-bottom button { flex: 1; }
+.botoes-bottom button {
+    flex: 1;
+}
 
 /* -------------------------------------------
    RESPONSIVIDADE (CELULAR)
    ------------------------------------------- */
 @media (max-width: 768px) {
     .conteudo-principal {
-        grid-template-columns: 1fr; /* Uma coluna só no celular */
+        grid-template-columns: 1fr;
+        /* Uma coluna só no celular */
     }
 
     .container {
         padding: 15px;
+    }
+
+    .linha {
+        flex-direction: column;
+        align-items: stretch;
+        /* opcional, deixa os inputs ocuparem toda largura */
+    }
+
+    .mes span {
+        font-size: 13px;
+    }
+
+    .actions button {
+        padding: 4px 6px;
+        font-size: 12px;
     }
 }
