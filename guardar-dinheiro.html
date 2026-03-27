@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Guardar Dinheiro</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="shortcut icon" href="./logo.png" type="image/x-icon">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <div class="logo">
+      <img src="./logo.png" alt="Logo">
+      <h1>Guardar Dinheiro</h1>
+    </div>
+
+    <div class="secao-adicionar">
+      <select id="tipoAdicionar">
+        <option value="">Selecione o tipo</option>
+        <option value="guardado">💰 Dinheiro Guardado</option>
+        <option value="gasto">🚨 Gasto</option>
+      </select>
+
+      <div class="linha">
+        <input type="number" id="valor" placeholder="Valor (R$)" style="display:none;">
+        <label for="mostrarMeta">Meta?</label>
+        <input type="checkbox" id="mostrarMeta">
+        <input id="meta" type="number" placeholder="Meta (R$)" style="display:none;">
+      </div>
+
+      <div id="camposGuardado" class="linha" style="display:none;">
+        <select id="mes">
+          <option value="">Mês</option>
+          <option>Janeiro</option>
+          <option>Fevereiro</option>
+          <option>Março</option>
+          <option>Abril</option>
+          <option>Maio</option>
+          <option>Junho</option>
+          <option>Julho</option>
+          <option>Agosto</option>
+          <option>Setembro</option>
+          <option>Outubro</option>
+          <option>Novembro</option>
+          <option>Dezembro</option>
+        </select>
+        <select id="ano">
+          <option value="">Ano</option>
+          <option>2025</option>
+          <option>2026</option>
+          <option>2027</option>
+        </select>
+      </div>
+
+      <div id="camposGasto" style="display:none;">
+        <input type="text" id="descricaoGasto" placeholder="Descrição do gasto">
+      </div>
+
+      <button id="btnAdicionar" style="display:none;">Adicionar</button>
+    </div>
+
+    <div id="lista"></div>
+    <div id="listaGastos"></div>
+
+    <div class="resumo">
+      <p>Guardado: R$ <span id="guardado">0</span></p>
+      <p>Falta: R$ <span id="falta">0</span></p>
+      <p>Progresso: <span id="percent">0%</span></p>
+    </div>
+
+    <div class="barra">
+      <div id="barra" class="progresso"></div>
+    </div>
+
+    <canvas id="grafico"></canvas>
+
+    <div class="botoes-bottom">
+      <button id="btnExport">📁 Exportar JSON</button>
+      <button id="btnPDF">🧾 Gerar PDF</button>
+      <button id="btnImportar" onclick="document.getElementById('inputFicheiro').click()">📂 Importar JSON</button>
+      <input type="file" id="inputFicheiro" style="display:none;" accept=".json">
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+
+</html>

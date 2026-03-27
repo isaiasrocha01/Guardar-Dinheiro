@@ -1,0 +1,158 @@
+/* Reset e Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(#0f2027, #203a43, #2c5364);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+/* Container Principal */
+.container {
+    width: 100%;
+    max-width: 1000px; /* Largura ideal para Desktop */
+    background: rgba(0, 0, 0, 0.8);
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+
+.logo{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin: auto;
+}
+.logo img {
+    width: 40px;
+    height: 40px;
+}
+
+
+h1 {
+    text-align: center;
+    color: #7fffd4;
+    margin-bottom: 10px;
+}
+
+/* --- GRID LAYOUT (A mágica acontece aqui) --- */
+.conteudo-principal {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Duas colunas iguais */
+    gap: 30px;
+}
+
+/* Coluna da Esquerda: Inputs */
+.coluna-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Coluna da Direita: Listas e Gráfico */
+.coluna-visualizacao {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 15px;
+    border-radius: 12px;
+}
+
+/* --- ESTILIZAÇÃO DE ELEMENTOS --- */
+input, select {
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    background: #eee;
+    width: 100%;
+    font-size: 16px;
+}
+
+.linha {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin: 12px 0;
+}
+
+button {
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background: #00ffd5;
+    color: #000;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #7fffd4;
+    transform: scale(1.02);
+}
+
+/* Listas com scroll para não esticar o layout */
+#lista, #listaGastos {
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.mes, .gasto {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 10px;
+    margin-bottom: 8px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+}
+
+.pago { text-decoration: line-through; color: #7fffd4; opacity: 0.6; }
+
+.barra {
+    height: 15px;
+    background: #333;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progresso {
+    height: 100%;
+    background: #00ffd5;
+    transition: width 0.5s ease;
+}
+
+.botoes-bottom {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.botoes-bottom button { flex: 1; }
+
+/* -------------------------------------------
+   RESPONSIVIDADE (CELULAR)
+   ------------------------------------------- */
+@media (max-width: 768px) {
+    .conteudo-principal {
+        grid-template-columns: 1fr; /* Uma coluna só no celular */
+    }
+
+    .container {
+        padding: 15px;
+    }
+}
