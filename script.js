@@ -137,40 +137,56 @@ function toggle(i) { meses[i].pago = !meses[i].pago; salvar(); render(); }
 function remover(i) { if (confirm("Remover?")) { meses.splice(i, 1); salvar(); render(); } }
 function removerGasto(i) { if (confirm("Remover gasto?")) { gastos.splice(i, 1); salvar(); render(); } }
 
-function atualizarGrafico(totalGastos) {
+function atualizarGrafico() {
+    // Labels: Nomes dos meses (ex: "Janeiro / 2025")
     const labels = meses.map(m => m.nome);
-    let acum = 0;
-    const dados = meses.map(m => {
-        if (m.pago) acum += m.valor;
-        return acum - totalGastos;
-    });
+    
+    // Dados: Apenas o valor individual de cada mês, independente de estar pago ou não
+    // Se quiser que apareça 0 para meses não marcados como "OK", use: m.pago ? m.valor : 0
+    const dados = meses.map(m => m.valor);
 
     if (grafico) grafico.destroy();
     if (labels.length === 0) return;
 
     grafico = new Chart(graficoEl, {
-        type: 'line',
+        type: 'line', // Você também pode testar 'bar' para ver colunas individuais
         data: {
             labels,
             datasets: [{
-                label: 'Saldo Real (R$)',
+                label: 'Valor Guardado no Mês (R$)',
                 data: dados,
                 borderColor: '#00ffd5',
                 backgroundColor: 'rgba(0, 255, 213, 0.1)',
                 borderWidth: 3,
-                tension: 0.3,
+                tension: 0, // Linha reta entre os pontos para precisão total
                 fill: true,
-                pointBackgroundColor: '#00ffd5'
+                pointBackgroundColor: '#fff',
+                pointRadius: 6,
+                pointHoverRadius: 8
             }]
         },
         options: {
             responsive: true,
             plugins: {
-                legend: { labels: { color: '#fff' } }
+                legend: { labels: { color: '#fff' } },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            return `Valor: R$ ${context.parsed.y.toFixed(2)}`;
+                        }
+                    }
+                }
             },
             scales: {
-                y: { ticks: { color: '#aaa' }, grid: { color: 'rgba(255,255,255,0.1)' } },
-                x: { ticks: { color: '#aaa' }, grid: { display: false } }
+                y: { 
+                    beginAtZero: true, // Garante que a escala comece no 0 para dar perspectiva
+                    ticks: { color: '#aaa' }, 
+                    grid: { color: 'rgba(255,255,255,0.1)' }
+                },
+                x: { 
+                    ticks: { color: '#aaa' }, 
+                    grid: { display: false } 
+                }
             }
         }
     });
